@@ -26,7 +26,7 @@ type Callback struct {
 
 	// Data associated with the callback button. Be aware that
 	// a bad client can send arbitrary data in this field.
-	Data string `json:"data"`
+	Data []byte `json:"data"`
 }
 
 // IsInline says whether message is an inline message.
@@ -71,14 +71,14 @@ type InlineButton struct {
 
 	Text            string `json:"text"`
 	URL             string `json:"url,omitempty"`
-	Data            string `json:"callback_data,omitempty"`
+	Data            []byte `json:"callback_data,omitempty"`
 	InlineQuery     string `json:"switch_inline_query,omitempty"`
 	InlineQueryChat string `json:"switch_inline_query_current_chat"`
 	Login           *Login `json:"login_url,omitempty"`
 }
 
 // With returns a copy of the button with data.
-func (t *InlineButton) With(data string) *InlineButton {
+func (t *InlineButton) With(data []byte) *InlineButton {
 	return &InlineButton{
 		Unique:          t.Unique,
 		Text:            t.Text,
